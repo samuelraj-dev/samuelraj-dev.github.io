@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mobile GPS Publisher</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 16px;
+        background: #f8fafc;
+        color: #0f172a;
+      }
+      .card {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 16px;
+        margin-bottom: 12px;
+      }
+      .row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      input,
+      button {
+        font-size: 16px;
+        padding: 10px;
+      }
+      input {
+        flex: 1;
+        min-width: 160px;
+      }
+      button {
+        border: none;
+        border-radius: 8px;
+        background: #2563eb;
+        color: #fff;
+      }
+      #logs {
+        white-space: pre-wrap;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 13px;
+        max-height: 42vh;
+        overflow: auto;
+      }
+      .meta {
+        font-size: 14px;
+        color: #475569;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h2>Mobile GPS Publisher</h2>
+      <p class="meta">
+        Publishes real GPS over HiveMQ public broker (works on Wi-Fi and mobile data) with
+        offline-first buffering.
+      </p>
+      <p class="meta">
+        Topic format: <code>resilitrack/&lt;TEAM&gt;/bus/location</code>. Override team via
+        <code>?team=YOUR_TEAM_NAME</code> (defaults to <code>thinkroot</code>).
+      </p>
+      <div class="row">
+        <input id="busId" value="BUS_01" />
+        <button id="startBtn">Start Tracking</button>
+        <button id="stopBtn">Stop</button>
+      </div>
+      <p id="status" class="meta"></p>
+    </div>
+
+    <div class="card">
+      <strong>Logs</strong>
+      <div id="logs"></div>
+    </div>
+
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <script src="/mobile-publisher.js"></script>
+  </body>
+</html>
